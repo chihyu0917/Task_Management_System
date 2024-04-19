@@ -120,6 +120,7 @@
         - <tasks/views.py>
             - 在EventManager新增一個Method
             1. `week_events(request)`： 獲取所有Event進行日期的排序，並分類到其所屬的週
+        - <tasks/templates/create_event.html> : 加入週檢視按鈕
     2. tasks目錄下新增
         - <tasks/templates/week_events.html>
         - <tasks/week_events.py>
