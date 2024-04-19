@@ -105,7 +105,7 @@
             - 在EventManager新增兩Method
             1. `list_event(request)` : 列出所有行程，無排序。點選查看，可進入個別Event備註頁面
             2. `update_event_detail(request, event_id)` : 可查看及更新備註內容
--0419 by manchien
+- 0419 by manchien
     1. code修改
         - <tasks/urls.py> : 增加register、login、logout的path
         - <tasks/templates/create_enent.html>：增加登出按鈕與"welcome 使用者"字樣，之後如果有主頁再修改到主頁
@@ -124,3 +124,5 @@
     2. tasks目錄下新增
         - <tasks/templates/week_events.html>
         - <tasks/week_events.py>
+
+- 0419 by Sophie : 合併列表功能到周檢視，備註功能在周檢視頁面

@@ -14,6 +14,7 @@
     <ul>
         {% for event in week_data.events %}
         <li>{{ event.date }} - {{ event.name }}</li>
+        <a href="{% url 'event-detail' event.id %}">查看</a>
         {% endfor %}
     </ul>
     {% endfor %}

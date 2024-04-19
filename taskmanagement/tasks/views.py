@@ -94,9 +94,9 @@ class EventManager:
         else:
             pass
             
-    def list_event(request):
-        events = Event.objects.all()
-        return render(request, 'list_event.html', {'events': events})
+    # def list_event(request):
+    #     events = Event.objects.all()
+    #     return render(request, 'list_event.html', {'events': events})
     
     def update_event_detail(request, event_id):
         if request.method == 'POST':
