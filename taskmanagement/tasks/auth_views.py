@@ -11,6 +11,7 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+            user_email = '@gmail.com'  #收件者
 
             # 電子郵件內容樣板
             email_template = render_to_string(
@@ -21,7 +22,7 @@ def register(request):
                 '註冊成功通知信',  # 電子郵件標題
                 email_template,  # 電子郵件內容
                 settings.EMAIL_HOST_USER,  # 寄件者
-                ['@gmail.com']  # 收件者
+                [user_email]  # 收件者
             )
             email.fail_silently = False
             email.send()
