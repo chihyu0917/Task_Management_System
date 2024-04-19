@@ -112,6 +112,14 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+# SMTP Configuration
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  #SMTP伺服器
+EMAIL_PORT = 587  #TLS通訊埠號
+EMAIL_USE_TLS = True  #開啟TLS(傳輸層安全性)
+EMAIL_HOST_USER = 'djangotaskmanagement@gmail.com'  #寄件者電子郵件
+EMAIL_HOST_PASSWORD = 'wtvlxatsloxvkfne'  #Gmail應用程式的密碼
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
