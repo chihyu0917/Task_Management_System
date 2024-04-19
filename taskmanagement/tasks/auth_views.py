@@ -8,6 +8,22 @@ def register(request):
         form = UserCreationForm(request.POST)
         if form.is_valid():
             user = form.save()
+
+            # 電子郵件內容樣板
+            email_template = render_to_string(
+                'signup_success_email.html',
+                {'username': user}
+            )
+            email = EmailMessage(
+                '註冊成功通知信',  # 電子郵件標題
+                email_template,  # 電子郵件內容
+                settings.EMAIL_HOST_USER,  # 寄件者
+                ['@gmail.com']  # 收件者
+            )
+            email.fail_silently = False
+            email.send()
+
+            
             login(request, user)
             return redirect('login')  # 修改為註冊成功後要跳轉的頁面，比如首頁
     else:
