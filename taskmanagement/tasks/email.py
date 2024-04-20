@@ -3,13 +3,13 @@ from django.conf import settings
 from django.template.loader import render_to_string
 
 
-class EmailClient:
+class SendEmail:
     def __init__(self):
         self.EMAIL_HOST_USER = settings.EMAIL_HOST_USER
     
-    def send_email(self,email_template,user_email):
+    def send_email(self,email_title,email_template,user_email):
         email = EmailMessage(
-                '註冊成功通知信',  # 電子郵件標題
+                email_title,  # 電子郵件標題
                 email_template,  # 電子郵件內容
                 settings.EMAIL_HOST_USER,  # 寄件者
                 [user_email]  # 收件者
@@ -17,7 +17,7 @@ class EmailClient:
         email.fail_silently = False
         email.send()
 
-    def send_order_message(self,
+    def send_email_reminder(self,
                             username,
                             orderno,
                             products,
