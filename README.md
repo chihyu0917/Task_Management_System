@@ -109,7 +109,7 @@
     1. code修改
         - <tasks/urls.py> : 增加register、login、logout的path
         - <tasks/templates/create_enent.html>：增加登出按鈕與"welcome 使用者"字樣，之後如果有主頁再修改到主頁
-    2.tasks目錄下的新增
+    2. tasks目錄下的新增
         - <tasks/templates/login.html>
         - <tasks/templates/register.html>
         - <tasks/auth_views.py>
