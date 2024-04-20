@@ -15,4 +15,8 @@ class Migration(migrations.Migration):
             name='last_login',
             field=models.TimeField(auto_now=True),
         ),
+<<<<<<< Updated upstream
     ]
+=======
+    ]
+>>>>>>> Stashed changes
