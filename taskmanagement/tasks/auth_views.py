@@ -5,18 +5,13 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 from tasks.userinfo import UserCreateForm, UserAuthForm
-<<<<<<< Updated upstream
 from tasks.email import SendEmail
-=======
-
->>>>>>> Stashed changes
 
 def register(request):
     if request.method == 'POST':
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
-<<<<<<< Updated upstream
             user_email = '@gmail.com'  #收件者
 
             # # 電子郵件內容樣板
@@ -30,8 +25,6 @@ def register(request):
             # email = SendEmail()
             # email.send_email(email_title,email_template,user_email)
 
-=======
->>>>>>> Stashed changes
             
             # 電子郵件內容樣板
             # email_template = render_to_string(
@@ -100,9 +93,4 @@ def user_logout(request):
     if username:
         return render(request, 'create_event.html', {'username': username})
     else:
-<<<<<<< Updated upstream
         return HttpResponse('Please log in to access this page.')
-=======
-        return HttpResponse('Please log in to access this page.')
-
->>>>>>> Stashed changes

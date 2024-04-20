@@ -1,9 +1,5 @@
 from django.db import models
 from django import forms
-<<<<<<< Updated upstream
-=======
-from django.contrib.auth.models import User
->>>>>>> Stashed changes
 from django.contrib.auth.hashers import check_password as django_check_password
 
 class CustomUserManager(models.Manager):
