@@ -334,3 +334,11 @@ UNLOCK TABLES;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
 -- Dump completed on 2024-04-17 13:42:47
+/*如果沒有自己產生table就手動輸入下面這段*/
+CREATE TABLE `tasks_customuser` (
+    `id` BIGINT AUTO_INCREMENT PRIMARY KEY,
+    `username` VARCHAR(150) UNIQUE,
+    `email` VARCHAR(255) UNIQUE,
+    `password` VARCHAR(128),
+    `last_login` VARCHAR(128)
+);
