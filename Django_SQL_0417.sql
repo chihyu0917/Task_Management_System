@@ -340,5 +340,5 @@ CREATE TABLE `tasks_customuser` (
     `username` VARCHAR(150) UNIQUE,
     `email` VARCHAR(255) UNIQUE,
     `password` VARCHAR(128),
-    `last_login` VARCHAR(128)
+    `last_login` time(6)
 );
