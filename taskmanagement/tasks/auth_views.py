@@ -6,7 +6,7 @@ from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
 
-from tasks.email import EmailClient
+from tasks.email import SendEmail
 
 def register(request):
     if request.method == 'POST':
@@ -21,8 +21,10 @@ def register(request):
                 {'username': user}
             )
 
-            email = EmailClient()
-            email.send_email(email_template,user_email)
+            email_title = '註冊成功通知信'
+
+            email = SendEmail()
+            email.send_email(email_title,email_template,user_email)
 
             
             login(request, user)
