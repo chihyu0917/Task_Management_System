@@ -19,8 +19,4 @@ class Migration(migrations.Migration):
                 ('password', models.CharField(max_length=128)),
             ],
         ),
-<<<<<<< Updated upstream
     ]
-=======
-    ]
->>>>>>> Stashed changes
