@@ -12,33 +12,11 @@ def register(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
-            user_email = '@gmail.com'  #收件者
-
-            # # 電子郵件內容樣板
-            # email_template = render_to_string(
-            #     'signup_success_email.html',
-            #     {'username': user}
-            # )
-
-            # email_title = '註冊成功通知信'
-
-            # email = SendEmail()
-            # email.send_email(email_title,email_template,user_email)
-
+            user_email = request.POST.get('email')  #收件者
             
-            # 電子郵件內容樣板
-            # email_template = render_to_string(
-            #     'signup_success_email.html',
-            #     {'username': user}
-            # )
-            # email = EmailMessage(
-            #     '註冊成功通知信',  # 電子郵件標題
-            #     email_template,  # 電子郵件內容
-            #     settings.EMAIL_HOST_USER,  # 寄件者
-            #     ['@gmail.com']  # 收件者
-            # )
-            # email.fail_silently = False
-            # email.send()
+            email = SendEmail()
+            email.send_register_mail(user,user_email)
+             
 
             login(request, user)
             return redirect('login')  # 修改為註冊成功後要跳轉的頁面，比如首頁
