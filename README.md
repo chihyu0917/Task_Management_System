@@ -126,3 +126,12 @@
         - <tasks/week_events.py>
 
 - 0419 by Sophie : 合併列表功能到周檢視，備註功能在周檢視頁面
+
+- 0521 by SioWan : 
+    1. code修改
+        - <tasks/urls.py> : 增加了create_chart的path
+        - <tasks/templates/create_event.html> : 加入統計圖按鈕
+    2. tasks目錄下新增
+        - <tasks/statistics.py>：根據chart_type的值生成統計圖，使用Event的Label作X值，從Event 模型中獲取所有不重複的Label並返回QuerySet，用迴圈計算對應事Label的數量存到statistics_events中（型別是Counter），創建了一個字典context，存取要傳遞給模板的數據。json.dumps() 方法將Python列表轉換為JSON字符串。
+        - <tasks/templates/statistics.html>：引用了Chart.js library的 JavaScript 代碼，用於生成圖表。
+

@@ -2,11 +2,9 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django import forms
 from . models import Event
-
 from datetime import datetime
 from .week_events import WeekEvents
 
-# Create your views here.
 class JumpToPage:
     @staticmethod
     def get_all_events():
