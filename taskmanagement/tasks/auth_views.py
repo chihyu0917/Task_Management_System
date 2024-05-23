@@ -12,10 +12,12 @@ def register(request):
         form = UserCreateForm(request.POST)
         if form.is_valid():
             user = form.save()
+            
             user_email = request.POST.get('email')  #收件者
             
             email = SendEmail()
             email.send_register_mail(user,user_email)
+            SendEmail.EmailAdd = user_email
              
 
             login(request, user)
@@ -32,6 +34,10 @@ def user_login(request):
             user = form.get_user()
             if user is not None:
                 login(request, user)
+
+                email = SendEmail()
+                email.getemail(user)
+                
                 # show_username(request)
                 # print(request.user.is_authenticated)
                 request.session['username'] = user.username  # Store username in session
