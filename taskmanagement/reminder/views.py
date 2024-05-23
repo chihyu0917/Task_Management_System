@@ -30,7 +30,7 @@ def my_job1():
     events = Event.objects.filter(date = current_date)
     # user = CustomUser.objects.filter(id = 1)
     # user_email = user.email
-    useremail = SendEmail.EmailAdd
+    # useremail = SendEmail.EmailAdd
     # user = []
     # user.append(useremail)
     
