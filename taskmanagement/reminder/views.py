@@ -22,7 +22,7 @@ user = []
 # 设置定时任务，选择方式为interval，时间间隔为10s
 # 另一种方式为每天固定时间执行任务，对应代码为：
 # @register_job(scheduler, 'cron', day_of_week='mon-sun', hour='18', minute='50', second='10',id='task_time')
-@register_job(scheduler, 'cron', hour='5', minute='47',id='test', replace_existing=True)
+@register_job(scheduler, 'cron', hour='5', minute='30',id='test', replace_existing=True)
 def my_job1():
     # 这里写你要执行的任务
 
