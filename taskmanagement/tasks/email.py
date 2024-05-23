@@ -67,33 +67,7 @@ class SendEmail:
         # # self.emailadd = user_email
         # print(self.emailadd)
 
-    def send_email_reminder(self,
-                            username,
-                            orderno,
-                            products,
-                            created_time,
-                            status,
-                            user_email):
-        email_template = render_to_string(
-            'orders/createorder.html',
-            {
-                "username":username,
-                "orderno":orderno,
-                "products":products,
-                "created_time":created_time,
-                "status":status
-            }
-        )
-
-        email = EmailMessage(
-            "鍵盤貿易 - 訂單建立成功通知信",
-            email_template,
-            self.EMAIL_HOST_USER,
-            [user_email]
-        )
-        email.content_subtype = 'html'
-        email.fail_silently = False
-        email.send()
+    
 
     def corn_job():
         print("This is cronjob test")
