@@ -144,21 +144,22 @@
 
 - 0524 by Sophie:
     1. code修改
-        - <taskmanagement.urls.py> : 首頁預設為登入介面
+        - <taskmanagement/urls.py> : 首頁預設為登入介面
         - <tasks/auth_view.py> : Store user ID in session
         - <tasks/userinfo.py> : Customuser關掉email檢查Unique
         - <tasks/models.py> : 增加Friendship model
-        - <tasks/views.py> : 增加friend_list, add_friend, list_users
+        - <tasks/views.py> : 增加friend_list, add_friend, list_users, user_ranking_by_last_login
     2. template修改
         - friend_list.html : 好友列表
         - list_users.html : 新增好友
         - create_event,html : 增加好友列表，增加好友
+        - user_ranking.html : 新增排行榜
         - login.html, register.html : 新增引導至對方的連結
     3. migrate與資料庫更動
         ```sh
         # 1. sql更新
         Django_SQL_0523.sql
-        ## 新增3個users範例
+        ## 已新增3個users範例，請直接在login介面中登入
         ## username, password
         ## 1. Amy, 123
         ## 2. Betty, 123
