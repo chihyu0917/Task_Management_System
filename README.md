@@ -158,7 +158,13 @@
         ```sh
         # 1. sql更新
         Django_SQL_0523.sql
+        ## 新增3個users範例
+        ## username, password
+        ## 1. Amy, 123
+        ## 2. Betty, 123
+        ## 3. Cindy, 123
         # 2. 視情況需要migrate
         python manage.py makemigrations # 可能不用
         python manage.py migrate # 可能不用
+        # P.S. setting.py中password請修改為自己的密碼
         ```
