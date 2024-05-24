@@ -1,10 +1,12 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
+from django.db.models import Count
 from django import forms
 from . models import Event, Friendship
 from datetime import datetime
 from .week_events import WeekEvents
 from .userinfo import CustomUser, CustomUserManager, UserAuthForm
+from django.utils.timezone import now
 
 class JumpToPage:
     @staticmethod
@@ -147,3 +149,7 @@ def add_friend(request, friend_id):
 def list_users(request):
     users = CustomUser.objects.all()
     return render(request, 'list_users.html', {'users': users})
+
+def user_ranking_by_last_login(request):
+    users = CustomUser.objects.all().order_by('-last_login')
+    return render(request, 'user_ranking.html', {'users': users})

@@ -96,6 +96,9 @@
             <button type="submit" class="btn">添加好友</button>
             <p><request class="user"></request></p>
         </form>
+        <form action="/tasks/user-ranking" method="get">
+            <button type="submit" class="btn">活動排名</button>
+        </form>
         <form action="/tasks/create_event/" method="post">
             {% csrf_token %}
             <label for="event_name">Event名稱</label>

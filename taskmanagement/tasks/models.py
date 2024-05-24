@@ -2,6 +2,7 @@ from django.db import models
 from django.conf import settings
 from tasks.userinfo import CustomUser
 from django.contrib.auth.models import User
+from django.contrib.auth import get_user_model
 
 # Create your models here.
 class Event(models.Model):
