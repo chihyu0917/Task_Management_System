@@ -24,5 +24,5 @@ urlpatterns = [
     path('login/', user_login, name='login'),
     path('logout/', user_logout, name='logout'),
     path('admin/', admin.site.urls),
-    path('', include('reminder.urls')),
+    path('', user_login, name='login'), # 首頁預設為登入頁面
 ]

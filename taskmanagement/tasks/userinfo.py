@@ -18,7 +18,7 @@ class CustomUserManager(models.Manager):
 
 class CustomUser(models.Model):
     username = models.CharField(max_length=150, unique=True)
-    email = models.EmailField(max_length=255, unique=True)
+    email = models.EmailField(max_length=255) # 關掉unique=True
     password = models.CharField(max_length=128)
     last_login = models.TimeField(auto_now=True)
 

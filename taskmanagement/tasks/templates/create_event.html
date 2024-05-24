@@ -89,6 +89,13 @@
         <form action="{% url 'login' %}" method="get">
             <button type="submit">登入</button>
         </form>
+        <form action="/tasks/friend_list" method="get">
+            <button type="submit" class="btn">好友列表</button>
+        </form>
+        <form action="/tasks/list_users" method="get">
+            <button type="submit" class="btn">添加好友</button>
+            <p><request class="user"></request></p>
+        </form>
         <form action="/tasks/create_event/" method="post">
             {% csrf_token %}
             <label for="event_name">Event名稱</label>

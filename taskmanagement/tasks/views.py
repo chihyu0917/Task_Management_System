@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django import forms
-from . models import Event
+from . models import Event, Friendship
 from datetime import datetime
 from .week_events import WeekEvents
+from .userinfo import CustomUser, CustomUserManager, UserAuthForm
 
 class JumpToPage:
     @staticmethod
@@ -126,3 +127,23 @@ class EventManager:
 
         return render(request, 'week_events.html', {'weeks_data': weeks_data})
 
+def friend_list(request):
+    user = CustomUser.objects.get(id=request.session['user_id'])
+    print(user)
+    friendships = Friendship.objects.filter(user=user)
+    friends = [friendship.friend for friendship in friendships]
+    return render(request, 'friend_list.html', {'friends': friends})
+
+def add_friend(request, friend_id):
+    user = CustomUser.objects.get(id=request.session['user_id'])
+    friend = CustomUser.objects.get(id=friend_id)
+    if user == friend:
+        return HttpResponse("不能關注自己為好友！")
+    elif Friendship.objects.filter(user=user, friend=friend).exists():
+        return HttpResponse("已經是關注的好友！")
+    Friendship.objects.create(user=user, friend=friend)
+    return redirect('friend_list')
+
+def list_users(request):
+    users = CustomUser.objects.all()
+    return render(request, 'list_users.html', {'users': users})

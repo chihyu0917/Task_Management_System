@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django_apscheduler',
-    'reminder',
     'tasks'
 ]
 
@@ -89,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Django_SQL',
         'USER': 'root',
-        'PASSWORD': '00000000', #設定自己的密碼
+        'PASSWORD': '2002020127', #設定自己的密碼
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -128,7 +126,7 @@ EMAIL_HOST_PASSWORD = 'wtvlxatsloxvkfne'  #Gmail應用程式的密碼
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'Asia/Taipei'
+TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
@@ -144,3 +142,8 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = '/login/'
+
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False
+SESSION_ENGINE = 'django.contrib.sessions.backends.db'

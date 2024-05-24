@@ -141,3 +141,24 @@
         - python manage.py makemigrations
         - python manage.py migrate
         - 執行完資料庫中會新增'django_apscheduler_djangojob'、'django_apscheduler_djangojobexecution' 兩個table
+
+- 0524 by Sophie:
+    1. code修改
+        - <taskmanagement.urls.py> : 首頁預設為登入介面
+        - <tasks/auth_view.py> : Store user ID in session
+        - <tasks/userinfo.py> : Customuser關掉email檢查Unique
+        - <tasks/models.py> : 增加Friendship model
+        - <tasks/views.py> : 增加friend_list, add_friend, list_users
+    2. template修改
+        - friend_list.html : 好友列表
+        - list_users.html : 新增好友
+        - create_event,html : 增加好友列表，增加好友
+        - login.html, register.html : 新增引導至對方的連結
+    3. migrate與資料庫更動
+        ```sh
+        # 1. sql更新
+        Django_SQL_0523.sql
+        # 2. 視情況需要migrate
+        python manage.py makemigrations # 可能不用
+        python manage.py migrate # 可能不用
+        ```

@@ -1,7 +1,9 @@
+<!-- templates/friend_list.html -->
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Login</title>
+    <meta charset="UTF-8">
+    <title>好友列表</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,6 +36,12 @@
 
         p {
             margin-top: 20px;
+            color: #666;
+        }
+
+        li {
+            list-style-type: none;
+            margin-bottom: 10px;
             color: #666;
         }
 
@@ -80,15 +88,11 @@
     </style>
 </head>
 <body>
-    <h2>登入</h2>
-    {% if error_message %}
-        <p style="color: red;">{{ error_message }}</p>
-    {% endif %}
-    <form method="POST" action="{% url 'login' %}">
-        {% csrf_token %}
-        {{ form.as_p }}
-        <button type="submit">Login</button>
-    </form>
-    <p>還沒有帳號？<a href="{% url 'register' %}">註冊</a></p>
+    <h1>{{request.session.username}}的關注好友列表</h1>
+    <ul>
+        {% for friend in friends %}
+            <li>{{ friend.username }}</li>
+        {% endfor %}
+    </ul>
 </body>
 </html>

@@ -14,6 +14,8 @@ urlpatterns = [
     # path('list_event/', views.EventManager.list_event),
     path('week_events/', views.EventManager.week_events),
     path('event/<int:event_id>/', views.EventManager.update_event_detail),
-    path('create_chart/', statistics.StatisticManager.createChart)
-
+    path('create_chart/', statistics.StatisticManager.createChart),
+    path('list_users/', views.list_users, name='list_users'),
+    path('add_friend/<int:friend_id>/', views.add_friend, name='add_friend'),
+    path('friend_list/', views.friend_list, name='friend_list'),
 ]
