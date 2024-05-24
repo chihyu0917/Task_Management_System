@@ -169,3 +169,17 @@
         python manage.py migrate # 可能不用
         # P.S. setting.py中password請修改為自己的密碼
         ```
+- 0525 by SioWan:
+    1. 修改Code
+        - <tasks/statistics.py>：改成用Class
+          a.StatisticManager Class
+            createChart用來創建圖表的函數
+            --> chart_type是圖表類型，預設值為Pie
+            --> chart = Chart(chart_type)創建Chart Class的實例
+            --> context = chart.get_context()調用Chart的method
+            --> 最後回傳到模板
+          b.Chart Class
+            --> __init__構造函數，初始化圖表類型
+            --> load_data是加載數據的方法，從Event中提取不同標籤及其計數
+            --> get_context調用load_data加載數據，並返回包含labels、data和chart_type 的上下文字典，將數據轉換為JSON格式以便在模板中使用
+        - <tasks/templates/statistics.html>：改了使用dataset和options
