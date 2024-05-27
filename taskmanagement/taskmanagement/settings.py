@@ -85,9 +85,9 @@ WSGI_APPLICATION = 'taskmanagement.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': '0525',
+        'NAME': 'Django_SQL',
         'USER': 'root',
-        'PASSWORD': '00000000', #設定自己的密碼
+        'PASSWORD': '2002020127', #設定自己的密碼
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
