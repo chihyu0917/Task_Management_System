@@ -153,6 +153,16 @@
             <h3>顯示統計頁面</h3>
             <button type="submit">跳轉</button>
         </form>
+        <form action="{% url 'todo_list' %}" method="get" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示To Do List</h3>
+            <button type="submit">跳轉</button>
+        </form>
+        <form action="{% url 'diary_list' %}" method="get" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示日記</h3>
+            <button type="submit">跳轉</button>
+        </form>
     </div>
 </body>
 </html>

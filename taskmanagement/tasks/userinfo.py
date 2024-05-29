@@ -1,8 +1,10 @@
 from django.db import models
 from django import forms
+from django.conf import settings
+from django.contrib.auth.models import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.hashers import check_password as django_check_password
 
-class CustomUserManager(models.Manager):
+class CustomUserManager(BaseUserManager):
     def create_user(self, username, email, password=None):
         if not username:
             raise ValueError('The Username field must be set')
@@ -16,11 +18,14 @@ class CustomUserManager(models.Manager):
         user.save(using=self._db)
         return user
 
-class CustomUser(models.Model):
+class CustomUser(AbstractBaseUser):
     username = models.CharField(max_length=150, unique=True)
     email = models.EmailField(max_length=255) # 關掉unique=True
     password = models.CharField(max_length=128)
     last_login = models.TimeField(auto_now=True)
+    REQUIRED_FIELDS = ['email']  
+    USERNAME_FIELD = 'username'
+
 
     objects = CustomUserManager()
 
@@ -64,3 +69,45 @@ class UserAuthForm(forms.Form):
         except CustomUser.DoesNotExist:
             print('User not found')  # 除錯輸出
             return None
+        
+
+class TodoItem(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField()
+    is_pinned = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    is_completed = models.BooleanField(default=False)  # 添加这个字段
+
+
+    class Meta:
+        ordering = ['-is_pinned', '-created_at']
+
+class DiaryEntry(models.Model):
+    user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    date = models.DateField()
+    content = models.TextField()
+    image = models.ImageField(upload_to='diary_images/', blank=True, null=True)
+
+
+class TodoForm(forms.ModelForm):
+    class Meta:
+        model = TodoItem
+        fields = ['content', 'is_pinned', 'is_completed']  
+        labels = {
+            'content': '内容',
+            'is_pinned': '置頂',
+            'is_completed': '完成',
+        }
+
+class DiaryForm(forms.ModelForm):
+    class Meta:
+        model = DiaryEntry
+        # fields = ['date', 'content', 'image']
+        fields = ['date', 'content']
+        labels = {
+            'date': '日期',
+            'content': '內容',
+        }
+        widgets = {
+            'date': forms.DateInput(attrs={'type': 'date'}),
+        }

@@ -1,11 +1,57 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth import login, logout
+from django.http import HttpResponse
 from django.core.mail import EmailMessage
 from django.conf import settings
 from django.template.loader import render_to_string
-from tasks.userinfo import UserCreateForm, UserAuthForm
+from tasks.userinfo import UserCreateForm, UserAuthForm, TodoForm, DiaryForm, TodoItem, DiaryEntry
 from tasks.email import SendEmail
+
+from django.contrib.auth.decorators import login_required
+
+@login_required
+def todo_list(request):
+    if request.method == 'POST':
+        form = TodoForm(request.POST)
+        if form.is_valid():
+            todo_item = form.save(commit=False)
+            todo_item.user = request.user
+            todo_item.save()
+            return redirect('todo_list')
+    else:
+        form = TodoForm()
+    items = TodoItem.objects.filter(user=request.user)
+    return render(request, 'todo_list.html', {'items': items, 'form': form})
+
+def update_task(request, task_id):
+    task = TodoItem.objects.get(id=task_id)
+    task.is_completed = not task.is_completed
+    task.save()
+    return redirect('/tasks/todo/')  # 根据实际情况调整重定向 URL
+
+
+@login_required
+def diary_list(request):
+    if request.method == 'POST':
+        form = DiaryForm(request.POST, request.FILES)
+        if form.is_valid():
+            diary_entry = form.save(commit=False)
+            diary_entry.user = request.user
+            diary_entry.save()
+            return redirect('diary_list')
+    else:
+        form = DiaryForm()
+    entries = DiaryEntry.objects.filter(user=request.user).order_by('-date')
+    return render(request, 'diary_list.html', {'entries': entries, 'form': form})
+
+def delete_entry(request, entry_id):
+    if request.method == 'POST':
+        entry = DiaryEntry.objects.get(id=entry_id)
+        entry.delete()
+        return redirect('diary_list')  # 确保 'diary_list' 是显示日记列表的视图的 URL 名称
+    else:
+        return redirect('diary_list')  # GET 请求也重定向，避免直接访问删除 URL
 
 def register(request):
     if request.method == 'POST':

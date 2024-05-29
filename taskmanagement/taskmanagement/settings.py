@@ -87,7 +87,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'Django_SQL',
         'USER': 'root',
-        'PASSWORD': '2002020127', #設定自己的密碼
+        'PASSWORD': '.', #設定自己的密碼
         'HOST': '127.0.0.1',
         'PORT': '3306',
     }
@@ -147,3 +147,8 @@ LOGIN_URL = '/login/'
 
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+AUTH_USER_MODEL = 'tasks.CustomUser'
+BASE_DIRs = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIRs, 'media')  # 确保这个路径是正确的，并且应用有写权限
