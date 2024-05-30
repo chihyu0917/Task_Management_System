@@ -78,6 +78,10 @@ def user_login(request):
             user = form.get_user()
             if user is not None:
                 login(request, user)
+
+                email = SendEmail()
+                email.getemail(user)
+                
                 # show_username(request)
                 # print(request.user.is_authenticated)
                 request.session['username'] = user.username  # Store username in session
