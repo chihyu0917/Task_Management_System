@@ -135,13 +135,6 @@
         - <tasks/statistics.py>：根據chart_type的值生成統計圖，使用Event的Label作X值，從Event 模型中獲取所有不重複的Label並返回QuerySet，用迴圈計算對應事Label的數量存到statistics_events中（型別是Counter），創建了一個字典context，存取要傳遞給模板的數據。json.dumps() 方法將Python列表轉換為JSON字符串。
         - <tasks/templates/statistics.html>：引用了Chart.js library的 JavaScript 代碼，用於生成圖表。
 
-- 0524 by Sherry : 修改email相關設定
-    1. 安裝django-apscheduler
-        - pip install django-apscheduler
-        - python manage.py makemigrations
-        - python manage.py migrate
-        - 執行完資料庫中會新增'django_apscheduler_djangojob'、'django_apscheduler_djangojobexecution' 兩個table
-
 - 0524 by Sophie:
     1. code修改
         - <taskmanagement/urls.py> : 首頁預設為登入介面
@@ -183,3 +176,11 @@
             --> load_data是加載數據的方法，從Event中提取不同標籤及其計數
             --> get_context調用load_data加載數據，並返回包含labels、data和chart_type 的上下文字典，將數據轉換為JSON格式以便在模板中使用
         - <tasks/templates/statistics.html>：改了使用dataset和options
+      
+- 0530 by Sherry : 修改email相關設定
+    1. 安裝django-apscheduler
+        - pip install django-apscheduler
+        - python manage.py makemigrations
+        - python manage.py migrate
+        - 執行完資料庫中會新增'django_apscheduler_djangojob'、'django_apscheduler_djangojobexecution' 兩個table
+       
