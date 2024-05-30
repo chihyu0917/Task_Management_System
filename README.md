@@ -183,4 +183,5 @@
         - python manage.py makemigrations
         - python manage.py migrate
         - 執行完資料庫中會新增'django_apscheduler_djangojob'、'django_apscheduler_djangojobexecution' 兩個table
+        - 不知道是不是是背景執行的關係，reminder程式碼沒註解掉會影響migrate，所以我先註解掉
        
