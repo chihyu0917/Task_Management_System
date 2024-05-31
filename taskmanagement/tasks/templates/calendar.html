@@ -1,0 +1,30 @@
+<!-- schedule/templates/schedule/calendar.html -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar</title>
+    <link href="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/fullcalendar@5.10.1/main.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        
+        $(document).ready(function () {
+            // var events_json = JSON.parse('events_json');
+            var calendarEl = document.getElementById('calendar');
+            var calendar = new FullCalendar.Calendar(calendarEl, {
+                initialView: 'dayGridMonth',
+                events: '/tasks/calendar_list/'
+            });
+            calendar.render();
+        });
+    </script>
+</head>
+
+<body>
+    <div id="calendar"></div>
+</body>
+
+</html>
