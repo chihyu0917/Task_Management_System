@@ -127,7 +127,7 @@ EMAIL_HOST_PASSWORD = 'wtvlxatsloxvkfne'  #Gmail應用程式的密碼
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Taipei'
 
 USE_I18N = True
 
