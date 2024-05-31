@@ -2,7 +2,7 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from . import views, statistics, auth_views, reminder
+from . import views, statistics, auth_views, reminder, pomodoro
 
 # from tasks import auth_views
 urlpatterns = [
@@ -26,5 +26,6 @@ urlpatterns = [
     path('diary/',auth_views.diary_list, name='diary_list'),
     path('update_task/<int:task_id>/', auth_views.update_task, name='update_task'),
     path('diary/delete/<int:entry_id>/', auth_views.delete_entry, name='delete_entry'),
+    path('pomodoro/', pomodoro.pomodoro_timer, name='pomodoro_timer'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
