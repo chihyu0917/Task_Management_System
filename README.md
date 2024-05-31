@@ -177,7 +177,7 @@
             --> get_context調用load_data加載數據，並返回包含labels、data和chart_type 的上下文字典，將數據轉換為JSON格式以便在模板中使用
         - <tasks/templates/statistics.html>：改了使用dataset和options
       
-- 0530 by Sherry : 修改email相關設定
+- 0530 by Sherry : 修改email相關設定、新增番茄鐘
     1. 安裝django-apscheduler
         - pip install django-apscheduler
         - python manage.py makemigrations
