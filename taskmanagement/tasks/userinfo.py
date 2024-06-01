@@ -41,7 +41,7 @@ class CustomUser(AbstractBaseUser):
         你可以根据实际需求和项目逻辑来扩展这个属性。
         """
         return self.last_login is not None and self.last_login != ''
-    
+
 class UserCreateForm(forms.ModelForm):
     password = forms.CharField(max_length=128, widget=forms.PasswordInput)
 

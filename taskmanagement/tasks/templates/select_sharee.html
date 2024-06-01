@@ -1,0 +1,19 @@
+<!-- select_sharee.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Sharee</title>
+</head>
+<body>
+    <h1>Select Sharee</h1>
+    <form action="{% url 'start-chat' %}" method="post">
+        {% csrf_token %}
+        <label for="sharee_username">選擇共享者的用戶名：</label>
+        <input type="text" id="sharee_username" name="sharee_username">
+        <button type="submit">開始聊天</button>
+    </form>
+</body>
+</html>

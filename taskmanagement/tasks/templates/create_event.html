@@ -175,7 +175,6 @@
             <button type="submit">跳轉</button>
         </form>
 
-        <!-- 添加共享功能的按鈕 -->
         <form action="{% url 'event-list-for-sharing' %}" method="get" class="flex-container">
             <h3>分享事件</h3>
             <button type="submit">跳轉</button>
@@ -183,6 +182,11 @@
 
         <form action="{% url 'shared-events' %}" method="get" class="flex-container">
             <h3>查看共享的事件</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+        <form action="{% url 'chat_list' %}" method="get" class="flex-container">
+            <h3>選擇共享者聊天</h3>
             <button type="submit">跳轉</button>
         </form>
 

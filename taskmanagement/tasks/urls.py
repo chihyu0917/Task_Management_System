@@ -33,7 +33,7 @@ urlpatterns = [
     path('event_list_for_sharing/', share.event_list_for_sharing, name='event-list-for-sharing'),
     path('shared_events/', share.shared_events, name='shared-events'),
     path('share_event/<int:event_id>/', share.share_event, name='share-event'),
-#    path('events/share/', event_list_for_sharing, name='event-list-for-sharing'),
-#    path('shared-events/', shared_events, name='shared-events'),
+    path('chat/', views.chat_list, name='chat_list'),
+    path('chat/<int:user_id>/', views.chat_detail, name='chat_detail'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,14 +2,19 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.http import HttpResponse, JsonResponse
 from django.db.models import Count
 from django import forms
-from . models import Event, Friendship
+from . models import Event, Friendship, SharedEvent, Chat
 from datetime import datetime
 from .week_events import WeekEvents
 from .userinfo import CustomUser, CustomUserManager, UserAuthForm
 from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from .models import Event, SharedEvent, CustomUser
-from .forms import ShareEventForm
+from .forms import ShareEventForm, MessageForm
+from .chat import chat_room
+from django.db import models
+from django.contrib.auth.models import User
+from django.conf import settings
+from django.contrib.auth import get_user_model
 
 class JumpToPage:
     @staticmethod
@@ -160,3 +165,76 @@ def user_ranking_by_last_login(request):
 def event_list_for_sharing(request):
     events = Event.objects.all()
     return render(request, 'event_list_for_sharing.html', {'events': events})
+
+import logging
+
+logger = logging.getLogger(__name__)
+
+@login_required
+def chat_list(request):
+    shared_events = SharedEvent.objects.filter(shared_by=request.user)
+    shared_users = {se.shared_with for se in shared_events}
+    customusers = CustomUser.objects.all()
+#    print(shared_users)
+#    print(customusers)
+    return render(request, 'chat_list.html', {'shared_users': shared_users, 'customusers': customusers})
+    #custom_user = CustomUser.objects.get(username=shared_users)
+    #return render(request, 'chat_list.html', {'custom_user_id': custom_user.id})
+
+'''
+def chat_detail(request, user_id):
+    other_user = get_object_or_404(CustomUser, id=user_id)
+    messages = Chat.objects.filter(
+        sender=request.user,
+        receiver=other_user
+    ) | Chat.objects.filter(
+        sender=other_user,
+        receiver=request.user
+    ).order_by('timestamp')
+    form = MessageForm()
+    
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            chat = form.save(commit=False)
+            chat.sender = request.user
+            chat.receiver = other_user
+            chat.save()
+            return redirect('chat_detail', user_id=user_id)
+
+    return render(request, 'chat_detail.html', {
+        'other_user': other_user,
+        'messages': messages,
+        'form': form,
+    })
+'''
+
+def chat_detail(request, user_id):
+    other_user = get_object_or_404(CustomUser, id=user_id)
+    
+    # 获取当前用户与指定用户之间的聊天消息
+    messages = Chat.objects.filter(
+        sender=request.user,
+        receiver=other_user
+    ) | Chat.objects.filter(
+        sender=other_user,
+        receiver=request.user
+    ).order_by('timestamp')
+    
+    # 显示发送消息的表单
+    form = MessageForm()
+    
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            chat = form.save(commit=False)
+            chat.sender = request.user
+            chat.receiver = other_user
+            chat.save()
+            return redirect('chat_detail', user_id=user_id)
+
+    return render(request, 'chat_detail.html', {
+        'other_user': other_user,
+        'messages': messages,
+        'form': form,
+    })

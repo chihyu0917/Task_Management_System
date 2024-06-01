@@ -35,3 +35,25 @@ class SharedEvent(models.Model):
 #    shared_with = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shared_events')
 #    shared_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shared_by')
     shared_date = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.event} shared by {self.shared_by} with {self.shared_with}"
+
+class Chat(models.Model):
+    #settings.AUTH_USER_MODEL
+    sender = models.ForeignKey(CustomUser, related_name='sent_messages', on_delete=models.CASCADE)
+    receiver = models.ForeignKey(CustomUser, related_name='received_messages', on_delete=models.CASCADE)
+    message = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"Chat from {self.sender} to {self.receiver} at {self.timestamp}"
+
+class Message(models.Model):
+    chat = models.ForeignKey(Chat, on_delete=models.CASCADE, related_name='messages')
+    sender = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    content = models.TextField()
+    timestamp = models.DateTimeField(auto_now_add=True)
+
+
+
