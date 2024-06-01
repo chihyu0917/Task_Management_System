@@ -2,7 +2,8 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from . import views, statistics, auth_views, reminder, pomodoro, calendar
+from . import views, statistics, auth_views, reminder, pomodoro, calendar,share
+#from .views import event_list_for_sharing, share_event, shared_events
 
 # from tasks import auth_views
 urlpatterns = [
@@ -29,5 +30,10 @@ urlpatterns = [
     path('pomodoro/', pomodoro.pomodoro_timer, name='pomodoro_timer'),
     path('calendar/', calendar.calendar_view, name='calendar'),
     path('calendar_list/', calendar.event_list, name='calendar_list'),
+    path('event_list_for_sharing/', share.event_list_for_sharing, name='event-list-for-sharing'),
+    path('shared_events/', share.shared_events, name='shared-events'),
+    path('share_event/<int:event_id>/', share.share_event, name='share-event'),
+#    path('events/share/', event_list_for_sharing, name='event-list-for-sharing'),
+#    path('shared-events/', shared_events, name='shared-events'),
 
 ]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

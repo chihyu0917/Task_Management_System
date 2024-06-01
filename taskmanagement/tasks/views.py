@@ -7,6 +7,9 @@ from datetime import datetime
 from .week_events import WeekEvents
 from .userinfo import CustomUser, CustomUserManager, UserAuthForm
 from django.utils.timezone import now
+from django.contrib.auth.decorators import login_required
+from .models import Event, SharedEvent, CustomUser
+from .forms import ShareEventForm
 
 class JumpToPage:
     @staticmethod
@@ -153,3 +156,7 @@ def list_users(request):
 def user_ranking_by_last_login(request):
     users = CustomUser.objects.all().order_by('-last_login')
     return render(request, 'user_ranking.html', {'users': users})
+
+def event_list_for_sharing(request):
+    events = Event.objects.all()
+    return render(request, 'event_list_for_sharing.html', {'events': events})

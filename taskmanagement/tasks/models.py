@@ -11,6 +11,8 @@ class Event(models.Model):
     label = models.CharField(max_length=100) #this is the label of the event, it is used to categorize the event
     date = models.DateField() #this is the date of the event
     description = models.CharField(max_length=255, blank=True)
+#    owner = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='events')
+#    owner = models.ForeignKey(User, on_delete=models.CASCADE)
 
     def __str__(self):
         return self.name
@@ -25,3 +27,11 @@ class Friendship(models.Model):
 
     def __str__(self):
         return f"{self.user.username} is friends with {self.friend.username}"
+
+class SharedEvent(models.Model):
+    event = models.ForeignKey(Event, on_delete=models.CASCADE)
+    shared_with = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='shared_events')
+    shared_by = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='shared_by')
+#    shared_with = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shared_events')
+#    shared_by = models.ForeignKey(User, on_delete=models.CASCADE, related_name='shared_by')
+    shared_date = models.DateTimeField(auto_now_add=True)
