@@ -187,3 +187,7 @@
 
     2. 因為我們的data只有日期，所以時間表我就做成行事曆的樣式
        
+- 0602 by xiaoqian : 共享行程、聊天室
+    - python manage.py makemigrations
+    - python manage.py migrate
+    - (目前聊天室還沒辦法雙向...我盡力了QQ)
