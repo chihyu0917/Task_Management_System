@@ -22,7 +22,7 @@
 # # 设置定时任务，选择方式为interval，时间间隔为10s
 # # 另一种方式为每天固定时间执行任务，对应代码为：
 # # @register_job(scheduler, 'cron', day_of_week='mon-sun', hour='18', minute='50', second='10',id='task_time')
-# @register_job(scheduler, 'cron', hour='06', minute='30',id='test', replace_existing=True)
+# @register_job(scheduler, 'cron', hour='05', minute='30',id='test', replace_existing=True)
 # def my_job1():
 #     # 这里写你要执行的任务
 
@@ -37,19 +37,21 @@
 
 #     # print(SendEmail.EmailAdd)
 
-#     email_template = render_to_string(
+#     if events is not None:
+
+#         email_template = render_to_string(
 #                 'reminder_email.html',
 #                 {'events': events}
-#             )
+#              )
         
-#     email = EmailMessage(
+#         email = EmailMessage(
 #                 '今日行程提醒',  # 電子郵件標題
 #                 email_template,  # 電子郵件內容
 #                 settings.EMAIL_HOST_USER,  # 寄件者
 #                 [user[0]]  # 收件者
-#             )
-#     email.fail_silently = False
-#     email.send()
+#                 )
+#         email.fail_silently = False
+#         email.send()
 #     pass
 
 
