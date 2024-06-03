@@ -191,3 +191,6 @@
     - python manage.py makemigrations
     - python manage.py migrate
     - (目前聊天室還沒辦法雙向...我盡力了QQ)
+ 
+- 0603 by Sherry : 取消註解提醒功能
+    - 如果還要 migrate 的話要註解掉 remider.py 再 migrate，不然會出錯
