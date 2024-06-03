@@ -137,6 +137,7 @@ class EventManager:
 
         return render(request, 'week_events.html', {'weeks_data': weeks_data})
 
+# class FriendManager:
 def friend_list(request):
     user = CustomUser.objects.get(id=request.session['user_id'])
     print(user)
