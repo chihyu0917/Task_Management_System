@@ -176,6 +176,10 @@
             --> load_data是加載數據的方法，從Event中提取不同標籤及其計數
             --> get_context調用load_data加載數據，並返回包含labels、data和chart_type 的上下文字典，將數據轉換為JSON格式以便在模板中使用
         - <tasks/templates/statistics.html>：改了使用dataset和options
+- 0530 by manchien
+    1. 新增功能Todolist、diary 
+        * 修改</tasks/userinfo.py>與</tasks/auth_views.py>、</tasks/templates/create_event.html>
+        * 新增</tasks/templates/diary_list.html>、</tasks/templates/todo_list.html>       
       
 - 0601 by Sherry : 修改email相關設定、新增番茄鐘、新增行事曆
     1. 安裝django-apscheduler
