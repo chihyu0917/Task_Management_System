@@ -23,7 +23,7 @@
 # # 另一种方式为每天固定时间执行任务，对应代码为：
 # # @register_job(scheduler, 'cron', day_of_week='mon-sun', hour='18', minute='50', second='10',id='task_time')
 # @register_job(scheduler, 'cron', hour='05', minute='30',id='test', replace_existing=True)
-# def my_job1():
+# def reminder_email():
 #     # 这里写你要执行的任务
 
 #     current_date = datetime.now().date()
@@ -60,7 +60,7 @@
 
 
 # @register_job(scheduler, "interval", seconds=10, replace_existing=True)  # replace_existing=解决第二次启动失败的问题
-# def my_job():
+# def getemail():
 #     # 这里写你要执行的任务
 
 #     # current_date = datetime.now().date()
