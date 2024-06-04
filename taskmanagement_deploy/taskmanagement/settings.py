@@ -160,3 +160,7 @@ ALLOWED_HOSTS = [
     '[::1]',  # IPv6 的 localhost
     'task-management-system-l14v.onrender.com'
 ]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://task-management-system-l14v.onrender.com',
+]
