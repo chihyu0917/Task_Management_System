@@ -89,7 +89,7 @@ DATABASES = {
         'NAME': 'django_postgresql_vtkg',
         'USER': 'root',
         'PASSWORD': 'Kt0P7KsHXOzxMAgGoEPm8FP1XMe1Y6nt', 
-        'HOST': 'dpg-cpfa3d7109ks73bg1vq0-a.singapore-postgres.render.com',
+        'HOST': 'dpg-cpfa3d7109ks73bg1vq0-a/django_postgresql_vtkg',
         'PORT': '5432',
     }
 }
