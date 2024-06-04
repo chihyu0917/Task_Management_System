@@ -153,3 +153,10 @@ AUTH_USER_MODEL = 'tasks.CustomUser'
 BASE_DIRs = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIRs, 'media')  # 确保这个路径是正确的，并且应用有写权限
+
+ALLOWED_HOSTS = [
+    'localhost', 
+    '127.0.0.1', 
+    '[::1]',  # IPv6 的 localhost
+    'task-management-system-l14v.onrender.com'
+]
