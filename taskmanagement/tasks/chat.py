@@ -1,5 +1,4 @@
-# views.py
-
+'''
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Chat, Message
@@ -20,3 +19,4 @@ def chat_room(request, chat_id):
     else:
         form = MessageForm()
     return render(request, 'chat_room.html', {'chat': chat, 'form': form})
+'''

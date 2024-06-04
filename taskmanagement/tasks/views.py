@@ -10,7 +10,7 @@ from django.utils.timezone import now
 from django.contrib.auth.decorators import login_required
 from .models import Event, SharedEvent, CustomUser
 from .forms import ShareEventForm, MessageForm
-from .chat import chat_room
+#from .chat import chat_room
 from django.db import models
 from django.contrib.auth.models import User
 from django.conf import settings
