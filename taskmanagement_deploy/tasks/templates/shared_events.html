@@ -1,0 +1,18 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Events</title>
+</head>
+<body>
+    <h1>Shared Events</h1>
+    <ul>
+        {% for shared_event in shared_events %}
+        <li>{{ shared_event.event.date }} - {{ shared_event.event.name }} (shared by {{ shared_event.shared_by.username }})</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

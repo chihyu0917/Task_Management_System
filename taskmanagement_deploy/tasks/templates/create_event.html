@@ -1,0 +1,195 @@
+<!-- create_event.html -->
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>創建新的Event</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #666;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="date"],
+        button {
+            margin-bottom: 10px;
+            padding: 8px;
+            width: 20%;
+            box-sizing: border-box;
+        }
+
+        .flex-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .flex-container h3 {
+            margin-right: 10px;
+            color: #222222;
+        }
+
+        button {
+            background-color: #d7c5f8;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5c03c8;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>創建新的Event</h1>
+        <p>Welcome  {{ request.session.username }} !</p>
+        <form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit">登出</button>
+        </form>
+        <form action="{% url 'login' %}" method="get">
+            <button type="submit">登入</button>
+        </form>
+        <form action="/tasks/friend_list" method="get">
+            <button type="submit" class="btn">好友列表</button>
+        </form>
+        <form action="/tasks/list_users" method="get">
+            <button type="submit" class="btn">添加好友</button>
+            <p><request class="user"></request></p>
+        </form>
+        <form action="/tasks/user-ranking" method="get">
+            <button type="submit" class="btn">活動排名</button>
+        </form>
+        <form action="/tasks/create_event/" method="post">
+            {% csrf_token %}
+            <label for="event_name">Event名稱</label>
+            <input type="text" name="event_name" id="event_name"><br>
+            <label for="event_label">Event標籤</label>
+            <input type="text" name="event_label" id="event_label"><br>
+            <label for="event_date">Event日期</label>
+            <input type="date" name="event_date" id="event_date"><br>
+            <button type="submit">創建Event</button>
+        </form>
+
+        <h2>查詢</h2>
+        <form action="/tasks/search/" method="get">
+            <input type="text" name="event_label" id="search-input" placeholder="輸入查詢內容">
+            <button id="search-button">搜索</button><br><br>
+        </form>
+
+        <form action="/tasks/toupdate_event/" method="post" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示更新頁面</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+        <form action="/tasks/todelete_event/" method="post" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示删除頁面</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+        <form action="/tasks/categories/" method="post" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示分類頁面</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+        <!-- <form action="/tasks/list_event/" method="post">
+            {% csrf_token %}
+            <div style="display: flex; align-items: center;">
+                <h3 style="margin-right: 10px;">顯示列表頁面</h3>
+                <button type="submit">跳轉</button>
+            </div>
+        </form>-->
+
+        <form action="/tasks/week_events/" method="post" class="flex-container">
+            {% csrf_token %}
+            <h3>週檢視</h3>
+            <button type="submit">跳轉</button>
+        </form>
+        
+        <form action="/tasks/create_chart/" method="post" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示統計頁面</h3>
+            <button type="submit">跳轉</button>
+        </form>
+        <form action="{% url 'todo_list' %}" method="get" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示To Do List</h3>
+            <button type="submit">跳轉</button>
+        </form>
+        <form action="{% url 'diary_list' %}" method="get" class="flex-container">
+            {% csrf_token %}
+            <h3>顯示日記</h3>
+            <button type="submit">跳轉</button>
+        </form>
+        <form action="/tasks/pomodoro" method="get" class="flex-container">
+            <!-- {% csrf_token %} -->
+            <h3>蕃茄鐘</h3>
+            <button type="submit">跳轉</button>
+        </form>
+        <form action="/tasks/calendar" method="get" class="flex-container">
+            <!-- {% csrf_token %} -->
+            <h3>行事曆</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+        <form action="{% url 'event-list-for-sharing' %}" method="get" class="flex-container">
+            <h3>分享事件</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+        <form action="{% url 'shared-events' %}" method="get" class="flex-container">
+            <h3>查看共享的事件</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+        <form action="{% url 'chat_list' %}" method="get" class="flex-container">
+            <h3>選擇共享者聊天</h3>
+            <button type="submit">跳轉</button>
+        </form>
+
+    </div>
+</body>
+</html>

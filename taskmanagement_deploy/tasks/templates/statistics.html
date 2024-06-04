@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>統計圖表</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 50%;
+        }
+        #chart {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-top: 30px;
+            color: #666;
+        }
+
+        p {
+            margin-top: 20px;
+            color: #666;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        button {
+            background-color: #d7c5f8;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5c03c8;
+        }
+    </style>
+</head>
+<body>
+    <h1>Event標籤個數統計</h1>
+    <form action="{% url 'create_chart' %}" method="post">
+        {% csrf_token %}
+        <label for="chart_type">選擇圖表類型:</label>
+        <select name="chart_type" id="chart_type">
+            <option value="pie">餅圖</option>
+            <option value="bar">條形圖</option>
+            <option value="line">折線圖</option>
+        </select>
+        <button type="submit">生成圖表</button>
+    </form>
+
+    <div class="chart-container">
+        <canvas id="chart"></canvas>
+    </div>
+
+    <script>
+        var ctx = document.getElementById('chart').getContext('2d');
+        var labels = JSON.parse('{{ labels|safe }}');
+        var data = JSON.parse('{{ data|safe }}');
+        var chartType = "{{ chart_type }}";
+
+        var chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: {
+                legend: {
+                    position: 'top',
+                },
+                title: {
+                    display: true,
+                    text: '事件統計'
+                }
+            }
+        };
+
+        if (chartType === 'pie') {
+            chartOptions.scales = {
+                y: {
+                    display: false
+                }
+            };
+        } else {
+            chartOptions.scales = {
+                y: {
+                    beginAtZero: true,
+                    title: {
+                        display: true,
+                        text: '數量'
+                    }
+                }
+            };
+        }
+
+        var chart = new Chart(ctx, {
+        type: chartType,
+        data: {
+            labels: labels,
+            datasets: [{
+                data: data,
+                label: chartType === 'pie' ? labels : "數量",
+                backgroundColor: chartType === 'pie' ? [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ]:'rgba(255, 99, 132, 0.2)',
+                borderColor: chartType === 'pie' ? [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ]:'rgba(255, 99, 132, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: chartOptions
+    });
+
+    </script>
+</body>
+</html>

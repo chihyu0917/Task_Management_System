@@ -1,0 +1,16 @@
+<!-- chat_room.html -->
+
+<h1>Chat Room</h1>
+
+<div>
+  {% for message in chat.messages.all %}
+    <p>{{ message.sender.username }}: {{ message.content }}</p>
+    <small>{{ message.timestamp }}</small>
+  {% endfor %}
+</div>
+
+<form action="{% url 'chat-room' chat_id=chat.id %}" method="post">
+  {% csrf_token %}
+  {{ form }}
+  <button type="submit">Send</button>
+</form>

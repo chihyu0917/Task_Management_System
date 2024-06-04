@@ -1,0 +1,100 @@
+<!--!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with {{ other_user.username }}</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #666;
+        }
+
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>Chat with {{ other_user.username }}</h1>
+    
+    < 显示聊天消息历史记录>
+    <div>
+        {% for message in messages %}
+            <p><strong>{{ message.sender.username }}:</strong> {{ message.message }} <em>({{ message.timestamp }})</em></p>
+        {% endfor %}
+    </div>
+    
+    < 发送新消息的表单>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html-->
+
+<!-- chat_detail.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat with {{ other_user.username }}</title>
+</head>
+<body>
+    <h1>Chat with {{ other_user.username }}</h1>
+    
+    <!-- 显示聊天消息历史记录 -->
+    <div>
+        {% for message in messages %}
+            <p><strong>{{ message.sender.username }}:</strong> {{ message.message }} <em>({{ message.timestamp }})</em></p>
+        {% endfor %}
+    </div>
+    
+    <!-- 发送新消息的表单 -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Send</button>
+    </form>
+</body>
+</html>
