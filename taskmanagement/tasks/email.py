@@ -42,34 +42,34 @@ class SendEmail:
         # self.emailadd = user_email
 
 
-    def reminder(self):
+    # def reminder(self):
 
-        # user_email = CustomUser.email.__get__
-        # user = CustomUser.objects.get(username=username)
-        # user = CustomUser.objects.get
-        # user_email = user.email
+    #     # user_email = CustomUser.email.__get__
+    #     # user = CustomUser.objects.get(username=username)
+    #     # user = CustomUser.objects.get
+    #     # user_email = user.email
 
-        email_template = render_to_string(
-                'signup_success_email.html',
-                {'username': 'abcnd'}
-            )
+    #     email_template = render_to_string(
+    #             'signup_success_email.html',
+    #             {'username': 'abcnd'}
+    #         )
         
-        email = EmailMessage(
-                '註冊成功通知信2',  # 電子郵件標題
-                email_template,  # 電子郵件內容
-                settings.EMAIL_HOST_USER,  # 寄件者
-                [SendEmail.EmailAdd]  # 收件者
-            )
-        email.fail_silently = False
-        email.send()
-        # print(SendEmail.EmailAdd)
-        # self.EmailAdd = user_email
-        # # self.emailadd = user_email
-        # print(self.emailadd)
+    #     email = EmailMessage(
+    #             '註冊成功通知信2',  # 電子郵件標題
+    #             email_template,  # 電子郵件內容
+    #             settings.EMAIL_HOST_USER,  # 寄件者
+    #             [SendEmail.EmailAdd]  # 收件者
+    #         )
+    #     email.fail_silently = False
+    #     email.send()
+    #     # print(SendEmail.EmailAdd)
+    #     # self.EmailAdd = user_email
+    #     # # self.emailadd = user_email
+    #     # print(self.emailadd)
 
     
 
-    def corn_job():
-        print("This is cronjob test")
+    # def corn_job():
+    #     print("This is cronjob test")
 
 
