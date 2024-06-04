@@ -86,10 +86,10 @@ WSGI_APPLICATION = 'taskmanagement.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'django_postgresql_vtkg',
+        'NAME': 'django_postgresql_2ksv',
         'USER': 'root',
-        'PASSWORD': 'Kt0P7KsHXOzxMAgGoEPm8FP1XMe1Y6nt', 
-        'HOST': 'dpg-cpfa3d7109ks73bg1vq0-a.singapore-postgres.render.com',
+        'PASSWORD': 'Tzwap3qhFko1SVThsRzFGCGhF7du8EZg', 
+        'HOST': 'dpg-cpfcfcf109ks73bha5v0-a.singapore-postgres.render.com',
         'PORT': '5432',
     }
 }
