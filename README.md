@@ -2,23 +2,22 @@ README.md
 
 - installation setup
     - 本地端程式使用雲端資料庫PostgreSQL
-        1.  設置一個 Python 虛擬環境。(建議python版本3.11) 
+        1.  設置一個 Python 虛擬環境。(python版本3.11) 
         2.  切換到/taskmanagement_deploy
         3.  使用 pip install -r requirements.txt 安裝所需的套件。
             *如果是MAC 要先brew install postgresql
         4.  執行 python manage.py runserver 啟動伺服器，以啟動應用程序。
     - 本地端程式使用本地端資料庫MySQL
-        1.  設置一個 Python 虛擬環境。(建議python版本3.11) 
-        2.  切換到/taskmanagement_deploy
+        1.  設置一個 Python 虛擬環境。(python版本3.11) 
+        2.  切換到/taskmanagement
         3.  使用 pip install -r requirements.txt 安裝所需的套件。
-            *如果是MAC 要先brew install postgresql
-        4.  使用 MySQL 執行提供的 SQL 腳本來設置資料庫。
+        4.  下載並使用 MySQL 執行提供的 SQL 腳本來設置資料庫。
         5.  在 Django  setting.py中配置資料庫連接。
         6.  執行 python manage.py makemigrations 和 python manage.py migrate 來設置資料庫模式。
         7.  使用 python manage.py runserver 啟動伺服器，以啟動應用程序。
 
 - file organization
-    
+    ```
     taskmanagement_deploy
     ├── db.sqlite3
     ├── diary_images
@@ -112,7 +111,7 @@ README.md
         ├── views.py
         └── week_events.py
     12 directories, 80 files
-    
+    ```
     以下是比較主要的File或directories描述：
     - /taskmanagement_deploy/manage.py：是將來要操作Django的一個元件
     - /taskmanagement_deploy/taskmanagement
